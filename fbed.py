@@ -68,7 +68,7 @@ class EncodingTask:
             "c:v": "libx265",
             "crf": "20",
             "c:a": "copy",
-            "preset": "superfast",
+            "preset": "veryfast",
             "progress": f"pipe:{self.pipe_write}"
         }
         self.start = datetime.datetime.now()
