@@ -63,24 +63,12 @@ class EncodingTask:
         info = [s for s in probe["streams"] if s["codec_type"] == "video"][0]
         self.width = info["width"]
         self.height = info["height"]
-        source_bitrate = get_video_bitrate(probe)
-        # Pick bitrate based on resolution, 1080p (8Mbps), 720p (5Mbps), smaller (3Mbps)
-        bitrate = 3000
-        if self.height > 720:
-            bitrate = 8000
-        elif self.height > 480:
-            bitrate = 5000
-        # Don't exceed the source bitrate as our target
-        if bitrate > source_bitrate:
-            bitrate = source_bitrate
 
         encoding_args = {
             # HWAccel for RPi4, may need to pick a different encoder
             # for HW accel on other systems
-            "c:v": "h264_v4l2m2m",
-            "num_output_buffers": 32,
-            "num_capture_buffers": 16,
-            "b:v": f"{bitrate}k",
+            "c:v": "libx265",
+            "crf": "20",
             "c:a": "copy",
             "progress": f"pipe:{self.pipe_write}"
         }
