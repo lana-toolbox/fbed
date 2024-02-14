@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import time
 import ffmpeg
 import os
 import sys
@@ -8,7 +7,6 @@ import docopt
 import subprocess
 import datetime
 import re
-import asyncio
 import urwid
 from collections import deque
 
@@ -70,6 +68,7 @@ class EncodingTask:
             "c:v": "libx265",
             "crf": "20",
             "c:a": "copy",
+            "preset": "superfast",
             "progress": f"pipe:{self.pipe_write}"
         }
         self.start = datetime.datetime.now()
