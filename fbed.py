@@ -66,7 +66,7 @@ class EncodingTask:
             # HWAccel for RPi4, may need to pick a different encoder
             # for HW accel on other systems
             "c:v": "libx265",
-            "crf": "20",
+            "crf": "19",
             "c:a": "copy",
             "preset": "veryfast",
             "progress": f"pipe:{self.pipe_write}"
